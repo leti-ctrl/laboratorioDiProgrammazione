@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc libcore.a  CMakeFiles/core.dir/Account.cpp.obj CMakeFiles/core.dir/Transaction.cpp.obj
+C:\MinGW\bin\ranlib.exe libcore.a

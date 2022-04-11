@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.cpp
+Account.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.h
+Transaction.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
+cstdlib
+-
+utility
+-
+fstream
+-
+ctime
+-
+iostream
+-
+
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.h
+string
+-
+vector
+-
+Transaction.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
+
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.cpp
+Transaction.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
+utility
+-
+ctime
+-
+
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
+string
+-
+
