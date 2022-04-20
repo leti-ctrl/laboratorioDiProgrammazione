@@ -7,28 +7,37 @@
 
 #include <string>
 
+
 using namespace std;
 
 class Transaction {
 public:
-    Transaction (string sender, string nameRecipient, string IBANrecipient, string causal, float amount);
+    Transaction (string IBAN, string causal, float amount, const string& dateAndTime = "", bool concilitory = false);
 
     float getAmount() const;
-    const string &getSender() const;
-    const string &getNameRecipient() const;
-    const string &getIbanRecipient() const;
+    bool setAmount(float a);
+
+    const string &getIban() const;
+    bool setIban(const string &i);
+
     const string &getCausal() const;
+    bool setCausal(const string &c);
+
     const string &getDateAndTime() const;
+    bool setDateAndTime(const string &det);
+
     const string &getNumberOperation() const;
 
+    bool isConciliatory() const;
+    void setConciliatory(bool conc);
+
 private:
-    string sender;
-    string nameRecipient;
-    string IBANrecipient;
+    string IBAN;
     string numberOperation;
     string causal;
     string dateAndTime;
     float amount;
+    bool conciliatory;
 };
 
 
