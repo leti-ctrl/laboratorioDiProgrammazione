@@ -18,15 +18,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77c4b1ad-ba96-4da3-8786-17723abe40fc" name="Default Changelist" comment="">
+    <list default="true" id="77c4b1ad-ba96-4da3-8786-17723abe40fc" name="Default Changelist" comment="Modified Transaction class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Transaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Transaction.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Transaction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/IT44U2147839358141587141529" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/IT44U2147839358141587141529" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/IT45N2703519894487850171234" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/IT45N2703519894487850171234" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/IT59F1544731726392795440836" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/IT59F1544731726392795440836" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/IT62F1996110491991291411376" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/IT62F1996110491991291411376" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/IT94S1390210153398355432142" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/IT94S1390210153398355432142" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,8 +133,17 @@
       <workItem from="1649666822836" duration="14157000" />
       <workItem from="1649689680915" duration="2123000" />
       <workItem from="1650456021716" duration="2719000" />
-      <workItem from="1650465782659" duration="4605000" />
+      <workItem from="1650465782659" duration="5119000" />
+      <workItem from="1650544510433" duration="1178000" />
     </task>
+    <task id="LOCAL-00001" summary="Modified Transaction class">
+      <created>1650475714013</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650475714013</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +152,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -157,24 +186,33 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Modified Transaction class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified Transaction class" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Notifications" timestamp="1649686226906">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1649686226906" />
-    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1650468646807">
+    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1650545642452">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1650468646807" />
+    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1650545642452" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1649673419572">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1649673419572" />
-    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1650475654391">
+    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1650475868472">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1650475654391" />
+    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1650475868472" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1649238717394">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -215,10 +253,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1649248368158" />
-    <state x="546" y="123" key="RollbackChangesDialog" timestamp="1650468329986">
+    <state x="546" y="123" key="RollbackChangesDialog" timestamp="1650545704863">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="546" y="123" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1650468329986" />
+    <state x="546" y="123" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1650545704863" />
     <state x="277" y="55" key="SettingsEditor" timestamp="1649681417665">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -227,10 +265,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1649686227591" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1650465783115">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1650544516490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1650465783115" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1650544516490" />
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1650475823121">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1650475823121" />
     <state x="510" y="56" key="refactoring.ChangeSignatureDialog" timestamp="1649348891542">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -11,8 +11,8 @@
 
 using namespace std;
 
-Transaction::Transaction(string IBAN, string causal, float amount, const string& dateAndTime, bool conciliatory) :
-IBAN(move(IBAN)), causal(move(causal)), amount(amount){
+Transaction::Transaction(string senderIBAN, string recipientIBAN, string causal, float amount, const string& dateAndTime, bool conciliatory) :
+senderIBAN(move(senderIBAN)), recipientIBAN(move(recipientIBAN)), causal(move(causal)), amount(amount){
 
     numberOperation = to_string((rand()%899999)+100000);
     this->conciliatory = conciliatory;
@@ -33,10 +33,6 @@ float Transaction::getAmount() const {
     return amount;
 }
 
-const string &Transaction::getIban() const {
-    return IBAN;
-}
-
 const string &Transaction::getCausal() const {
     return causal;
 }
@@ -51,14 +47,6 @@ const string &Transaction::getNumberOperation() const {
 
 bool Transaction::isConciliatory() const {
     return conciliatory;
-}
-
-bool Transaction::setIban(const string &i) {
-    if (conciliatory){
-        IBAN = i;
-        return true;
-    }
-    return false;
 }
 
 bool Transaction::setCausal(const string &c) {
@@ -87,4 +75,16 @@ bool Transaction::setAmount(float a) {
 
 void Transaction::setConciliatory(bool conc) {
     Transaction::conciliatory = conc;
+}
+
+const string &Transaction::getSenderIban() const {
+    return senderIBAN;
+}
+
+const string &Transaction::getRecipientIban() const {
+    return recipientIBAN;
+}
+
+void Transaction::setRecipientIban(const string &recipientIban) {
+    recipientIBAN = recipientIban;
 }

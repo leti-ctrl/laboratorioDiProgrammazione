@@ -12,13 +12,15 @@ using namespace std;
 
 class Transaction {
 public:
-    Transaction (string IBAN, string causal, float amount, const string& dateAndTime = "", bool concilitory = false);
+    Transaction (string senderIBAN, string recipientIBAN, string causal, float amount, const string& dateAndTime = "", bool concilitory = false);
 
     float getAmount() const;
     bool setAmount(float a);
 
-    const string &getIban() const;
-    bool setIban(const string &i);
+    const string &getSenderIban() const;
+
+    const string &getRecipientIban() const;
+    void setRecipientIban(const string &recipientIban);
 
     const string &getCausal() const;
     bool setCausal(const string &c);
@@ -32,7 +34,8 @@ public:
     void setConciliatory(bool conc);
 
 private:
-    string IBAN;
+    string senderIBAN;
+    string recipientIBAN;
     string numberOperation;
     string causal;
     string dateAndTime;
