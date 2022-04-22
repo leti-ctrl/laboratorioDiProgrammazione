@@ -11,22 +11,32 @@
 
 using namespace std;
 
-Transaction::Transaction(string senderIBAN, string recipientIBAN, string causal, float amount, const string& dateAndTime, bool conciliatory) :
-senderIBAN(move(senderIBAN)), recipientIBAN(move(recipientIBAN)), causal(move(causal)), amount(amount){
+Transaction::Transaction(string senderIBAN, string recipientIBAN, string causal, float amount, const string& date,
+        const string& time, bool conciliatory) :
+        senderIBAN(move(senderIBAN)), recipientIBAN(move(recipientIBAN)), causal(move(causal)), amount(amount){
 
     numberOperation = to_string((rand()%899999)+100000);
     this->conciliatory = conciliatory;
 
     //data e ora transazione
-    if (dateAndTime == " ") {
-        time_t now = chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    time_t now = chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
-        string s(30, '\0');
-        strftime(&s[0], s.size(), "%Y/%m/%d - %H:%M:%S", std::localtime(&now));
-        this->dateAndTime = s;
+    if (time == "X"){
+        string t(30, '\0');
+        strftime(&t[0], t.size(), "%H:%M", std::localtime(&now));
+        this->time = t;
     }
     else
-        this->dateAndTime = dateAndTime;
+        this->time = time;
+
+
+    if (date == "X") {
+        string d(30, '\0');
+        strftime(&d[0], d.size(), "%d/%m/%Y", std::localtime(&now));
+        this->date = d;
+    }
+    else
+        this->date = date;
 }
 
 float Transaction::getAmount() const {
@@ -35,10 +45,6 @@ float Transaction::getAmount() const {
 
 const string &Transaction::getCausal() const {
     return causal;
-}
-
-const string &Transaction::getDateAndTime() const {
-    return dateAndTime;
 }
 
 const string &Transaction::getNumberOperation() const {
@@ -52,14 +58,6 @@ bool Transaction::isConciliatory() const {
 bool Transaction::setCausal(const string &c) {
     if (conciliatory){
         causal = c;
-        return true;
-    }
-    return false;
-}
-
-bool Transaction::setDateAndTime(const string &det) {
-    if (conciliatory){
-        dateAndTime = det;
         return true;
     }
     return false;
@@ -87,4 +85,28 @@ const string &Transaction::getRecipientIban() const {
 
 void Transaction::setRecipientIban(const string &recipientIban) {
     recipientIBAN = recipientIban;
+}
+
+const string &Transaction::getDate() const {
+    return date;
+}
+
+bool Transaction::setDate(const string &day, const string &month, const string &year) {
+    if (conciliatory){
+        date = day + "/" + month + "/" + year;
+        return true;
+    }
+    return false;
+}
+
+const string &Transaction::getTime() const {
+    return time;
+}
+
+bool Transaction::setTime(const string &hours, const string &minutes) {
+    if (conciliatory) {
+        time = hours + ":" + minutes;
+        return true;
+    }
+    return false;
 }

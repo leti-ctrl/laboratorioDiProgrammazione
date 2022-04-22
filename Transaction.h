@@ -12,7 +12,8 @@ using namespace std;
 
 class Transaction {
 public:
-    Transaction (string senderIBAN, string recipientIBAN, string causal, float amount, const string& dateAndTime = "", bool concilitory = false);
+    Transaction (string senderIBAN, string recipientIBAN, string causal, float amount, const string& dateAndTime = "X",
+            const string& time = "X", bool concilitory = false);
 
     float getAmount() const;
     bool setAmount(float a);
@@ -25,8 +26,11 @@ public:
     const string &getCausal() const;
     bool setCausal(const string &c);
 
-    const string &getDateAndTime() const;
-    bool setDateAndTime(const string &det);
+    const string &getDate() const;
+    bool setDate(const string& day, const string& month, const string& year);
+
+    const string &getTime() const;
+    bool setTime(const string &hours, const string &minutes);
 
     const string &getNumberOperation() const;
 
@@ -38,7 +42,8 @@ private:
     string recipientIBAN;
     string numberOperation;
     string causal;
-    string dateAndTime;
+    string date;
+    string time;
     float amount;
     bool conciliatory;
 };
