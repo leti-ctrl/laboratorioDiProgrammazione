@@ -71,8 +71,8 @@ bool Transaction::setAmount(float a) {
     return false;
 }
 
-void Transaction::setConciliatory(bool conc) {
-    Transaction::conciliatory = conc;
+void Transaction::setConciliatory() {
+    conciliatory = true;
 }
 
 const string &Transaction::getSenderIban() const {

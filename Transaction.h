@@ -35,7 +35,7 @@ public:
     const string &getNumberOperation() const;
 
     bool isConciliatory() const;
-    void setConciliatory(bool conc);
+    void setConciliatory();
 
 private:
     string senderIBAN;

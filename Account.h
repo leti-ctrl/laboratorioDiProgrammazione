@@ -6,7 +6,7 @@
 #define LABORATORIODIPROGRAMMAZIONE_ACCOUNT_H
 
 #include <string>
-#include <vector>
+#include <list>
 #include "Transaction.h"
 
 using namespace std;
@@ -20,18 +20,20 @@ public:
     const string &getOwner() const;
     const string &getIban() const;
     float getBalance() const;
-
     float getBankCredit() const;
+    float getMaxBankCredit() const;
 
-    const float getMaxBankCredit() const;
+    Transaction getLastTransaction();
+    list<Transaction> getOneDayTransaction (const string &day, const string &month, const string &year);
+    list<Transaction> getIbanTransaction (const string &iban);
+    list<Transaction> getNotConciliatoryTransaction ();
 
-    Transaction getLAstTransaction();
+    bool removeTransaction (const Transaction &rem);
+    void addTransaction (const Transaction &tr);
+    int sizeHistoricalTransaction ();
 
     void outgoingTransaction (Account* recipient, string causal, float amount);
-    int doLegalTransaction (float amount);
-
     void incomingTransaction (Transaction* t);
-    int doRefill (float amount);
 
 private:
     string owner;
@@ -41,11 +43,14 @@ private:
     float balance;
     float bankCredit;
     const float MAX_BANK_CREDIT;
-    vector<Transaction> historicalTransaction;
+    list<Transaction> historicalTransaction;
 
     void writeIncomingTransaction(const Transaction& tr, int refill);
     void writeOutgoingTransaction(const Transaction& tr, int legal);
     void errorTransaction(const Transaction& transaction);
+
+    int doLegalTransaction (float amount);
+    int doRefill (float amount);
 };
 
 

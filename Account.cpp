@@ -187,7 +187,7 @@ void Account::errorTransaction(const Transaction& transaction) {
     delete(file);
 }
 
-Transaction Account::getLAstTransaction() {
+Transaction Account::getLastTransaction() {
     return historicalTransaction.back();
 }
 
@@ -195,6 +195,68 @@ float Account::getBankCredit() const {
     return bankCredit;
 }
 
-const float Account::getMaxBankCredit() const {
+float Account::getMaxBankCredit() const {
     return MAX_BANK_CREDIT;
+}
+
+list<Transaction> Account::getOneDayTransaction(const string &day, const string &month, const string &year) {
+    list<Transaction> ret;
+    string date = day + "/" + month + "/" + year;
+    for (const auto& t : historicalTransaction) {
+        if (t.getDate() == date)
+            ret.push_front(t);
+    }
+
+    if (ret.empty())
+        cerr<<"Non sono state fatte transazioni in data " << date << endl;
+
+    return ret;
+}
+
+list<Transaction> Account::getIbanTransaction(const string &iban) {
+    list<Transaction> ret;
+
+    for (const auto& t : historicalTransaction){
+        if (t.getRecipientIban() == iban || t.getSenderIban() == iban)
+            ret.push_front(t);
+    }
+
+    if (ret.empty())
+        cerr<<"Non esistono transazioni da/per questo codice IBAN: " << iban << endl;
+
+    return ret;
+}
+
+bool Account::removeTransaction(const Transaction &rem) {
+    for (const auto& tr : historicalTransaction) {
+        if (tr.getNumberOperation() == rem.getNumberOperation()){
+            historicalTransaction.remove(tr);
+            return true;
+        }
+    }
+
+    cerr<<"la transazione numero " << rem.getNumberOperation() << " non è presente. " << endl;
+    return false;
+}
+
+void Account::addTransaction(const Transaction &tr) {
+    historicalTransaction.push_front(tr);
+}
+
+int Account::sizeHistoricalTransaction() {
+    return historicalTransaction.size();
+}
+
+list<Transaction> Account::getNotConciliatoryTransaction() {
+    list<Transaction> ret;
+
+    for (const auto& t : historicalTransaction){
+        if (!t.isConciliatory())
+            ret.push_front(t);
+    }
+
+    if (ret.empty())
+        cerr<<"Le transazioni sono tutte conciliate."<<endl;
+
+    return ret;
 }
