@@ -29,11 +29,14 @@ public:
     list<Transaction> getNotConciliatoryTransaction ();
 
     bool removeTransaction (const Transaction &rem);
-    void addTransaction (const Transaction &tr);
+    void addTransaction (const Transaction &tr, const string& inOut = "out");
     int sizeHistoricalTransaction ();
 
-    void outgoingTransaction (Account* recipient, string causal, float amount);
-    void incomingTransaction (Transaction* t);
+    void createTransaction (Account* recipient, string causal, float amount, const string& date = "X",
+            const string& time = "X", bool conciliatory = false);
+    void createTransaction (Account* recipient, string causal, float amount, bool conciliatory);
+
+    void setConciliatoryAndDoTransaction (Account* rec, Transaction* tr);
 
 private:
     string owner;
@@ -45,11 +48,11 @@ private:
     const float MAX_BANK_CREDIT;
     list<Transaction> historicalTransaction;
 
-    void writeIncomingTransaction(const Transaction& tr, int refill);
-    void writeOutgoingTransaction(const Transaction& tr, int legal);
+    void writeTransaction(const Transaction& tr, const string& inOut = "out");
     void errorTransaction(const Transaction& transaction);
 
-    int doLegalTransaction (float amount);
+    void doTransaction (Account* recipient, const Transaction& tr);
+    int legalTransaction (float amount);
     int doRefill (float amount);
 };
 

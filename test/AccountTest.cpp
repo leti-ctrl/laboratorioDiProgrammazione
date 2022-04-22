@@ -22,7 +22,7 @@ protected:
 
 TEST_F(AccountSuite, outgoingTransactionTest) {
     float amount = 75.16;
-    a->outgoingTransaction(b, " causale ", amount);
+    a->createTransaction(b, " causale ", amount);
 
     float balanceA = balance - amount;
     ASSERT_EQ(balanceA, a->getBalance());

@@ -12,8 +12,8 @@ using namespace std;
 
 class Transaction {
 public:
-    Transaction (string senderIBAN, string recipientIBAN, string causal, float amount, const string& dateAndTime = "X",
-            const string& time = "X", bool concilitory = false);
+    Transaction (string senderIBAN, string recipientIBAN, string causal, float amount, const string& date = "X",
+            const string& time = "X", bool conciliatory = false);
 
     float getAmount() const;
     bool setAmount(float a);

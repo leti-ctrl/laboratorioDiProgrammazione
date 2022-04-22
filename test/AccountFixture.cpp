@@ -23,19 +23,19 @@ TEST(Account, TestDoLegalTransaction) {
 
     float firstAmount = 75.15;
     float firstRet = balance - firstAmount;
-    int zero = a->doLegalTransaction(firstAmount);
+    int zero = a->legalTransaction(firstAmount);
     ASSERT_EQ(0, zero);
     ASSERT_EQ(firstRet, a->getBalance());
 
     float secondAmount = 100.25;
     float secondRet = (firstRet+bankCredit) - secondAmount;
-    int one = a->doLegalTransaction(secondAmount);
+    int one = a->legalTransaction(secondAmount);
     ASSERT_EQ(1, one);
     ASSERT_EQ(0.0, a->getBalance());
     ASSERT_EQ(secondRet, a->getBankCredit());
 
     float thirdAmount = 80.00;
-    int minusOne = a->doLegalTransaction(thirdAmount);
+    int minusOne = a->legalTransaction(thirdAmount);
     ASSERT_EQ(-1, minusOne);
     ASSERT_EQ(0.0, a->getBalance());
     ASSERT_EQ(secondRet, a->getBankCredit());
@@ -47,7 +47,7 @@ TEST(Account, TestDoRefill) {
     auto* a = new Account ("letizia", 0, balance, bankCredit);
 
     float reduceBankCredit = 50;
-    a->doLegalTransaction(reduceBankCredit);
+    a->legalTransaction(reduceBankCredit);
     float result = bankCredit - reduceBankCredit;
 
     float firstAmount = 35.65;
