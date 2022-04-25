@@ -25,7 +25,7 @@ iostream
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.h
 string
 -
-vector
+list
 -
 Transaction.h
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
@@ -36,6 +36,8 @@ C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
 utility
 -
 ctime
+-
+chrono
 -
 
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h

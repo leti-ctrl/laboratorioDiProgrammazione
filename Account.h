@@ -38,6 +38,8 @@ public:
 
     void setConciliatoryAndDoTransaction (Account* rec, Transaction* tr);
 
+    void readFile ();
+
 private:
     string owner;
     string IBAN;
@@ -53,7 +55,7 @@ private:
 
     void doTransaction (Account* recipient, const Transaction& tr);
     int legalTransaction (float amount);
-    int doRefill (float amount);
+    void doRefill (float amount);
 };
 
 

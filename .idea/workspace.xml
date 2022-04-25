@@ -18,13 +18,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77c4b1ad-ba96-4da3-8786-17723abe40fc" name="Default Changelist" comment="">
+    <list default="true" id="77c4b1ad-ba96-4da3-8786-17723abe40fc" name="Default Changelist" comment="Changed the methods for making transaction in Account">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Account.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Account.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Account.h" beforeDir="false" afterPath="$PROJECT_DIR$/Account.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Transaction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/AccountFixture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/AccountFixture.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/core.dir/Account.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/core.dir/Account.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/core.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/core.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/core.dir/Transaction.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/core.dir/Transaction.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/libcore.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libcore.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/AccountFixture.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/AccountFixture.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/AccountTest.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/AccountTest.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/CMakeFiles/runTests.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/IT44U2147839358141587141529" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/IT44U2147839358141587141529" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/IT62F1996110491991291411376" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/IT62F1996110491991291411376" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/test/runTests.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/test/runTests.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/AccountTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/AccountTest.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +81,25 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
-  <component name="RunManager" selected="CMake Application.runTests">
+  <component name="RunManager" selected="Google Test.AccountSuite.createTransactionTest">
+    <configuration name="AccountSuite.createTransactionTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="laboratorioDiProgrammazione" TARGET_NAME="runTests" RUN_TARGET_PROJECT_NAME="laboratorioDiProgrammazione" RUN_TARGET_NAME="runTests" TEST_CLASS="AccountSuite" TEST_METHOD="createTransactionTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountSuite.outgoingTransactionTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="laboratorioDiProgrammazione" TARGET_NAME="runTests" RUN_TARGET_PROJECT_NAME="laboratorioDiProgrammazione" RUN_TARGET_NAME="runTests" TEST_CLASS="AccountSuite" TEST_METHOD="outgoingTransactionTest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Account.Constructor" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="laboratorioDiProgrammazione" TARGET_NAME="runTests" RUN_TARGET_PROJECT_NAME="laboratorioDiProgrammazione" RUN_TARGET_NAME="runTests" TEST_CLASS="Account" TEST_METHOD="Constructor" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="core" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="laboratorioDiProgrammazione" TARGET_NAME="core" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -117,7 +143,17 @@
       <item itemvalue="CMake Application.gmock_main" />
       <item itemvalue="CMake Application.gtest" />
       <item itemvalue="CMake Application.gtest_main" />
+      <item itemvalue="Google Test.Account.Constructor" />
+      <item itemvalue="Google Test.AccountSuite.outgoingTransactionTest" />
+      <item itemvalue="Google Test.AccountSuite.createTransactionTest" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Google Test.AccountSuite.createTransactionTest" />
+        <item itemvalue="Google Test.AccountSuite.outgoingTransactionTest" />
+        <item itemvalue="Google Test.Account.Constructor" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -139,6 +175,7 @@
       <workItem from="1650456021716" duration="2719000" />
       <workItem from="1650465782659" duration="5119000" />
       <workItem from="1650544510433" duration="1178000" />
+      <workItem from="1650894301453" duration="2051000" />
     </task>
     <task id="LOCAL-00001" summary="Modified Transaction class">
       <created>1650475714013</created>
@@ -161,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650623364627</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Changed the methods for making transaction in Account">
+      <created>1650632150822</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650632150822</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +258,8 @@
     <MESSAGE value="Modified Transaction class" />
     <MESSAGE value="Separation of date and time attributes in Transaction" />
     <MESSAGE value="Added methods to search/add/remove a transaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added methods to search/add/remove a transaction" />
+    <MESSAGE value="Changed the methods for making transaction in Account" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the methods for making transaction in Account" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Notifications" timestamp="1649686226906">
@@ -229,10 +274,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1649673419572" />
-    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1650623363074">
+    <state x="328" y="14" width="756" height="810" key="CommitChangelistDialog2" timestamp="1650896492348">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1650623363074" />
+    <state x="328" y="14" width="756" height="810" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1650896492348" />
+    <state x="147" y="63" key="DiffContextDialog" timestamp="1650632111093">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="147" y="63" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1650632111093" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1649238717394">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -241,22 +290,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="591" y="328" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1649689733167" />
-    <state width="1493" height="297" key="GridCell.Tab.0.bottom" timestamp="1650461515256">
+    <state width="1493" height="231" key="GridCell.Tab.0.bottom" timestamp="1650896338150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="297" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1650461515256" />
-    <state width="1493" height="297" key="GridCell.Tab.0.center" timestamp="1650461515255">
+    <state width="1493" height="231" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1650896338150" />
+    <state width="1493" height="231" key="GridCell.Tab.0.center" timestamp="1650896338150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="297" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1650461515255" />
-    <state width="1493" height="297" key="GridCell.Tab.0.left" timestamp="1650461515229">
+    <state width="1493" height="231" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1650896338150" />
+    <state width="1493" height="231" key="GridCell.Tab.0.left" timestamp="1650896338149">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="297" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1650461515229" />
-    <state width="1493" height="297" key="GridCell.Tab.0.right" timestamp="1650461515255">
+    <state width="1493" height="231" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1650896338149" />
+    <state width="1493" height="231" key="GridCell.Tab.0.right" timestamp="1650896338150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="297" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1650461515255" />
+    <state width="1493" height="231" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1650896338150" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1649248368158">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -285,18 +334,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1649686227591" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1650544516490">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1650894318004">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1650544516490" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1650894318004" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1650623251079">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1650623251079" />
-    <state x="510" y="56" key="refactoring.ChangeSignatureDialog" timestamp="1649348891542">
+    <state x="510" y="56" key="refactoring.ChangeSignatureDialog" timestamp="1650632533895">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="510" y="56" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1649348891542" />
+    <state x="510" y="56" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1650632533895" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1649179830947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

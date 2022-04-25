@@ -80,101 +80,16 @@ float Account::getBalance() const {
     return balance;
 }
 
-void Account::writeTransaction(const Transaction& tr, const string& inOut) {
-
-    auto file = new fstream (IBAN, ios::app);
-
-    if (inOut == "in") {
-        *file << "+++ MOVIMENTO IN ENTRATA " << tr.getDate() << " " << tr.getTime() << " -  OPERAZIONE "
-              << tr.getNumberOperation() << endl;
-        *file << "    IBAN: " << tr.getSenderIban() << endl;
-    }
-    else {
-        *file << "--- MOVIMENTO IN USCITA " << tr.getDate() << " " << tr.getTime() << " -  OPERAZIONE "
-              << tr.getNumberOperation() << endl;
-        *file << "    IBAN: " << tr.getRecipientIban() << endl;
-    }
-
-    *file << "    Causale: " << tr.getCausal() << endl;
-    *file << "    Importo: " << tr.getAmount() << " $" << endl;
-    *file << endl;
-
-    *file << "Saldo: " << balance << " $" << endl;
-    *file << "Fido: " << bankCredit << " $" << endl;
-    *file << endl;
-
-    file->close();
-    delete(file);
-}
-
-int Account::legalTransaction(float amount) {
-    //se ritorna 0 c'era abbastanza denaro sul conto
-    //se ritorna 1 significa che nel file va inserito anche l'ammontare del FIDO.
-    //se ritorna -1 l'operazione non è andata a buon fine
-    if (balance >= amount) {
-        balance -= amount;
-        return 0;
-    }
-    else if (balance != 0 && bankCredit >= amount-balance) {
-        float var = amount - balance;
-        balance = 0;
-        bankCredit -= var;
-        return 1;
-    }
-    else if (balance == 0 && bankCredit >= amount) {
-        bankCredit -= amount;
-        return 1;
-    }
-    else
-        return -1;
-}
-
-
-int Account::doRefill(float amount) {
-    //ritorna 0 se il fido è massimo e quindi non devo stamparlo
-    //ritorna 1 se invece il fido non era massimo e quindi devo stamparlo
-    if (bankCredit == MAX_BANK_CREDIT) {
-        balance += amount;
-        return 0;
-    }
-    else if (balance == 0 && bankCredit + amount > MAX_BANK_CREDIT) {
-
-        balance += amount - (MAX_BANK_CREDIT - bankCredit);
-        bankCredit = MAX_BANK_CREDIT;
-        return 1;
-    }
-    else {
-        bankCredit += amount;
-        return 1;
-    }
-}
-
-
-void Account::errorTransaction(const Transaction& transaction) {
-    auto file = new fstream (IBAN, ios::app);
-
-    *file << "[ERRORE] L'OPERAZIONE " << transaction.getNumberOperation() << " NON E' ANDATA A BUON FINE " << endl;
-    *file << "[ERRORE] Transazione per cod. IBAN: " << transaction.getRecipientIban() << endl;
-    *file << "[ERRORE] Importo " << transaction.getAmount() << "$" << endl;
-    *file << endl;
-
-    *file << "Saldo: " << balance << " $" << endl;
-    *file << "Fido: " << bankCredit << " $" << endl;
-    *file << endl;
-    file->close();
-    delete(file);
-}
-
-Transaction Account::getLastTransaction() {
-    return historicalTransaction.back();
-}
-
 float Account::getBankCredit() const {
     return bankCredit;
 }
 
 float Account::getMaxBankCredit() const {
     return MAX_BANK_CREDIT;
+}
+
+Transaction Account::getLastTransaction() {
+    return historicalTransaction.back();
 }
 
 list<Transaction> Account::getOneDayTransaction(const string &day, const string &month, const string &year) {
@@ -205,10 +120,24 @@ list<Transaction> Account::getIbanTransaction(const string &iban) {
     return ret;
 }
 
+list<Transaction> Account::getNotConciliatoryTransaction() {
+    list<Transaction> ret;
+
+    for (const auto& t : historicalTransaction){
+        if (!t.isConciliatory())
+            ret.push_front(t);
+    }
+
+    if (ret.empty())
+        cerr<<"Le transazioni sono tutte conciliate."<<endl;
+
+    return ret;
+}
+
 bool Account::removeTransaction(const Transaction &rem) {
-    for (const auto& tr : historicalTransaction) {
-        if (tr.getNumberOperation() == rem.getNumberOperation()){
-            historicalTransaction.remove(tr);
+    for (auto it = historicalTransaction.begin(); it != historicalTransaction.end(); ++it) {
+        if (rem.getNumberOperation() == it->getNumberOperation()){
+            historicalTransaction.erase(it);
             return true;
         }
     }
@@ -230,24 +159,12 @@ int Account::sizeHistoricalTransaction() {
     return historicalTransaction.size();
 }
 
-list<Transaction> Account::getNotConciliatoryTransaction() {
-    list<Transaction> ret;
-
-    for (const auto& t : historicalTransaction){
-        if (!t.isConciliatory())
-            ret.push_front(t);
-    }
-
-    if (ret.empty())
-        cerr<<"Le transazioni sono tutte conciliate."<<endl;
-
-    return ret;
-}
 
 void Account::createTransaction(Account *recipient, string causal, float amount, const string& date, const string& time,
                                 bool conciliatory) {
 
     auto t = new Transaction (this->IBAN, recipient->getIban(), std::move(causal), amount, date, time, conciliatory);
+    addTransaction(*t);
 
     if (conciliatory)
         doTransaction(recipient, *t);
@@ -257,15 +174,100 @@ void Account::createTransaction(Account *recipient, string causal, float amount,
 
 void Account::createTransaction(Account *recipient, string causal, float amount, bool conciliatory) {
     auto t = new Transaction (this->IBAN, recipient->getIban(), std::move(causal), amount, "X",
-            "X", conciliatory);
+                              "X", conciliatory);
+    addTransaction(*t);
+
     if (conciliatory)
         doTransaction(recipient, *t);
     else
         cout<<"Transazione n " << t->getNumberOperation() << " creata ma non conciliata " << endl;
 }
 
+void Account::setConciliatoryAndDoTransaction(Account* rec, Transaction *tr) {
+    tr->setConciliatory();
+    doTransaction(rec, *tr);
+}
+
+void Account::writeTransaction(const Transaction& tr, const string& inOut) {
+
+    auto file = new fstream (IBAN, ios::app);
+
+    if (inOut == "in") {
+        *file << "+++ MOVIMENTO IN ENTRATA " << tr.getDate() << " " << tr.getTime() << " -  OPERAZIONE "
+              << tr.getNumberOperation() << endl;
+        *file << "    IBAN: " << tr.getSenderIban() << endl;
+    }
+    else {
+        *file << "--- MOVIMENTO IN USCITA " << tr.getDate() << " " << tr.getTime() << " -  OPERAZIONE "
+              << tr.getNumberOperation() << endl;
+        *file << "    IBAN: " << tr.getRecipientIban() << endl;
+    }
+
+    *file << "    Causale: " << tr.getCausal() << endl;
+    *file << "    Importo: " << tr.getAmount() << " $" << endl;
+    *file << endl;
+
+    *file << "Saldo: " << balance << " $" << endl;
+    *file << "Fido: " << bankCredit << " $" << endl;
+    *file << endl;
+
+    file->close();
+    delete(file);
+}
+
+void Account::errorTransaction(const Transaction& transaction) {
+    auto file = new fstream (IBAN, ios::app);
+
+    *file << "[ERRORE] L'OPERAZIONE " << transaction.getNumberOperation() << " NON E' ANDATA A BUON FINE " << endl;
+    *file << "[ERRORE] Transazione per cod. IBAN: " << transaction.getRecipientIban() << endl;
+    *file << "[ERRORE] Importo " << transaction.getAmount() << "$" << endl;
+    *file << endl;
+
+    *file << "Saldo: " << balance << " $" << endl;
+    *file << "Fido: " << bankCredit << " $" << endl;
+    *file << endl;
+    file->close();
+    delete(file);
+}
+
+int Account::legalTransaction(float amount) {
+    //se ritorna 0 c'era abbastanza denaro sul conto
+    //se ritorna -1 l'operazione non è andata a buon fine
+    if (balance >= amount) {
+        balance -= amount;
+        return 0;
+    }
+    else if (balance != 0 && bankCredit >= amount-balance) {
+        float var = amount - balance;
+        balance = 0;
+        bankCredit -= var;
+        return 0;
+    }
+    else if (balance == 0 && bankCredit >= amount) {
+        bankCredit -= amount;
+        return 0;
+    }
+    else
+        return -1;
+}
+
+void Account::doRefill(float amount) {
+    //ritorna 0 se il fido è massimo e quindi non devo stamparlo
+    //ritorna 1 se invece il fido non era massimo e quindi devo stamparlo
+    if (bankCredit == MAX_BANK_CREDIT)
+        balance += amount;
+
+    else if (balance == 0 && bankCredit + amount > MAX_BANK_CREDIT) {
+        balance += amount - (MAX_BANK_CREDIT - bankCredit);
+        bankCredit = MAX_BANK_CREDIT;
+    }
+    else
+        bankCredit += amount;
+}
+
+
 void Account::doTransaction(Account* recipient, const Transaction &tr) {
-    addTransaction(tr);
+
     int legal = legalTransaction(tr.getAmount());
 
     if (legal != -1){
@@ -277,10 +279,20 @@ void Account::doTransaction(Account* recipient, const Transaction &tr) {
     }
 }
 
-void Account::setConciliatoryAndDoTransaction(Account* rec, Transaction *tr) {
-    tr->setConciliatory();
-    doTransaction(rec, *tr);
+void Account::readFile() {
+    auto file = new fstream (IBAN, ios::out);
+    string line;
+    int row = 0;
+
+    while (file->is_open() && file->eof()) {
+        getline(*file, line);
+        cout << row << " " << line << endl;
+    }
+
+    file->close();
+    delete file;
 }
+
 
 
 

@@ -20,9 +20,9 @@ protected:
     float bankCredit;
 };
 
-TEST_F(AccountSuite, outgoingTransactionTest) {
+TEST_F(AccountSuite, createTransactionTest) {
     float amount = 75.16;
-    a->createTransaction(b, " causale ", amount);
+    a->createTransaction(b, " causale ", amount, "10/05/2020", "15:38", true);
 
     float balanceA = balance - amount;
     ASSERT_EQ(balanceA, a->getBalance());
