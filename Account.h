@@ -23,7 +23,7 @@ public:
     float getBankCredit() const;
     float getMaxBankCredit() const;
 
-    Transaction getLastTransaction();
+    Transaction* getLastTransaction();
     list<Transaction> getOneDayTransaction (const string &day, const string &month, const string &year);
     list<Transaction> getIbanTransaction (const string &iban);
     list<Transaction> getNotConciliatoryTransaction ();

@@ -29,15 +29,15 @@ TEST (Account, TestGetLastTransaction) {
         testing->addTransaction(*transactionTest[i]); //inserisce in testa senza fare la transazione
     }
 
-    Transaction operation = testing->getLastTransaction(); //ritorna la transazione in testa alla lista
-    ASSERT_EQ(transactionTest[tot-1]->getNumberOperation(), operation.getNumberOperation());
-    ASSERT_EQ(transactionTest[tot-1]->getRecipientIban(), operation.getRecipientIban());
-    ASSERT_EQ(transactionTest[tot-1]->getSenderIban(), operation.getSenderIban());
-    ASSERT_EQ(transactionTest[tot-1]->getTime(), operation.getTime());
-    ASSERT_EQ(transactionTest[tot-1]->getDate(), operation.getDate());
-    ASSERT_EQ(transactionTest[tot-1]->getAmount(), operation.getAmount());
-    ASSERT_EQ(transactionTest[tot-1]->getCausal(), operation.getCausal());
-    ASSERT_EQ(transactionTest[tot-1]->isConciliatory(), operation.isConciliatory());
+    Transaction* operation = testing->getLastTransaction(); //ritorna la transazione in testa alla lista
+    ASSERT_EQ(transactionTest[tot-1]->getNumberOperation(), operation->getNumberOperation());
+    ASSERT_EQ(transactionTest[tot-1]->getRecipientIban(), operation->getRecipientIban());
+    ASSERT_EQ(transactionTest[tot-1]->getSenderIban(), operation->getSenderIban());
+    ASSERT_EQ(transactionTest[tot-1]->getTime(), operation->getTime());
+    ASSERT_EQ(transactionTest[tot-1]->getDate(), operation->getDate());
+    ASSERT_EQ(transactionTest[tot-1]->getAmount(), operation->getAmount());
+    ASSERT_EQ(transactionTest[tot-1]->getCausal(), operation->getCausal());
+    ASSERT_EQ(transactionTest[tot-1]->isConciliatory(), operation->isConciliatory());
 
     delete testing;
     for (int i = 0; i< tot; i++)
@@ -210,10 +210,10 @@ TEST (Account, TestAddTransaction) {
     b->addTransaction(*t, "in");
 
     ASSERT_EQ(a->sizeHistoricalTransaction(), 1);
-    ASSERT_EQ(a->getLastTransaction().getNumberOperation(), t->getNumberOperation());
+    ASSERT_EQ(a->getLastTransaction()->getNumberOperation(), t->getNumberOperation());
 
     ASSERT_EQ(b->sizeHistoricalTransaction(), 1);
-    ASSERT_EQ(b->getLastTransaction().getNumberOperation(), t->getNumberOperation());
+    ASSERT_EQ(b->getLastTransaction()->getNumberOperation(), t->getNumberOperation());
 
     delete a;
     delete b;
@@ -242,10 +242,10 @@ TEST (Account, TestRemoveTransaction) {
 
 
     ASSERT_EQ(testing->sizeHistoricalTransaction(), tot-2);
-    ASSERT_EQ(testing->getLastTransaction().getNumberOperation(), transactionTest[4]->getNumberOperation());
+    ASSERT_EQ(testing->getLastTransaction()->getNumberOperation(), transactionTest[4]->getNumberOperation());
 
     testing->removeTransaction(*transactionTest[4]);
-    ASSERT_EQ(testing->getLastTransaction().getNumberOperation(), transactionTest[3]->getNumberOperation());
+    ASSERT_EQ(testing->getLastTransaction()->getNumberOperation(), transactionTest[3]->getNumberOperation());
 
     delete testing;
     for (int i = 0; i < tot; i++)

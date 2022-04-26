@@ -88,8 +88,8 @@ float Account::getMaxBankCredit() const {
     return MAX_BANK_CREDIT;
 }
 
-Transaction Account::getLastTransaction() {
-    return historicalTransaction.front();
+Transaction* Account::getLastTransaction() {
+    return &(historicalTransaction.front());
 }
 
 list<Transaction> Account::getOneDayTransaction(const string &day, const string &month, const string &year) {
@@ -184,9 +184,18 @@ void Account::createTransaction(Account *recipient, string causal, float amount,
         cout<<"Transazione n " << t->getNumberOperation() << " creata ma non conciliata " << endl;
 }
 
-void Account::setConciliatoryAndDoTransaction(Account* rec, Transaction *tr) {
-    tr->setConciliatory();
-    doTransaction(rec, *tr);
+void Account::setConciliatoryAndDoTransaction(Account* rec, Transaction* tr) {
+
+    for (const auto& it : historicalTransaction) {
+        if (it.getNumberOperation() == tr->getNumberOperation()) {
+            if (rec->getIban() == tr->getRecipientIban()) {
+                tr->setConciliatory();
+                doTransaction(rec, *tr);
+            } else
+                cerr << "Il destinatario inserito e quello nella transazione non coincidono. " << endl;
+        }
+    }
+    //cerr << "La transazione cercata non è presente nello storico. " << endl;
 }
 
 void Account::writeTransaction(const Transaction& tr, const string& inOut) {
