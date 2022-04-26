@@ -55,7 +55,7 @@ private:
 
     void doTransaction (Account* recipient, const Transaction& tr);
     int legalTransaction (float amount);
-    void doRefill (float amount);
+    void doRefill (const Transaction &tr);
 };
 
 

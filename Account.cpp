@@ -89,7 +89,7 @@ float Account::getMaxBankCredit() const {
 }
 
 Transaction Account::getLastTransaction() {
-    return historicalTransaction.back();
+    return historicalTransaction.front();
 }
 
 list<Transaction> Account::getOneDayTransaction(const string &day, const string &month, const string &year) {
@@ -97,7 +97,7 @@ list<Transaction> Account::getOneDayTransaction(const string &day, const string 
     string date = day + "/" + month + "/" + year;
     for (const auto& t : historicalTransaction) {
         if (t.getDate() == date)
-            ret.push_front(t);
+            ret.push_back(t);
     }
 
     if (ret.empty())
@@ -110,8 +110,10 @@ list<Transaction> Account::getIbanTransaction(const string &iban) {
     list<Transaction> ret;
 
     for (const auto& t : historicalTransaction){
-        if (t.getRecipientIban() == iban || t.getSenderIban() == iban)
-            ret.push_front(t);
+        if (t.getRecipientIban() == iban)
+            ret.push_back(t);
+        if (t.getSenderIban() == iban)
+            ret.push_back(t);
     }
 
     if (ret.empty())
@@ -125,7 +127,7 @@ list<Transaction> Account::getNotConciliatoryTransaction() {
 
     for (const auto& t : historicalTransaction){
         if (!t.isConciliatory())
-            ret.push_front(t);
+            ret.push_back(t);
     }
 
     if (ret.empty())
@@ -150,8 +152,7 @@ void Account::addTransaction(const Transaction &tr, const string& inOut) {
     historicalTransaction.push_front(tr);
 
     if (inOut == "in") {
-        doRefill(tr.getAmount());
-        writeTransaction(tr, inOut);
+        doRefill(tr);
     }
 }
 
@@ -251,18 +252,20 @@ int Account::legalTransaction(float amount) {
         return -1;
 }
 
-void Account::doRefill(float amount) {
+void Account::doRefill(const Transaction &tr) {
     //ritorna 0 se il fido è massimo e quindi non devo stamparlo
     //ritorna 1 se invece il fido non era massimo e quindi devo stamparlo
     if (bankCredit == MAX_BANK_CREDIT)
-        balance += amount;
+        balance += tr.getAmount();
 
-    else if (balance == 0 && bankCredit + amount > MAX_BANK_CREDIT) {
-        balance += amount - (MAX_BANK_CREDIT - bankCredit);
+    else if (balance == 0 && bankCredit + tr.getAmount() > MAX_BANK_CREDIT) {
+        balance += tr.getAmount() - (MAX_BANK_CREDIT - bankCredit);
         bankCredit = MAX_BANK_CREDIT;
     }
     else
-        bankCredit += amount;
+        bankCredit += tr.getAmount();
+
+    writeTransaction(tr, "in");
 }
 
 
@@ -292,9 +295,3 @@ void Account::readFile() {
     file->close();
     delete file;
 }
-
-
-
-
-
-
