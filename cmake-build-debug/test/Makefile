@@ -224,6 +224,33 @@ AccountTest.cpp.s:
 	cd /d C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug && $(MAKE) -f test\CMakeFiles\runTests.dir\build.make test/CMakeFiles/runTests.dir/AccountTest.cpp.s
 .PHONY : AccountTest.cpp.s
 
+TransactionFixture.obj: TransactionFixture.cpp.obj
+
+.PHONY : TransactionFixture.obj
+
+# target to build an object file
+TransactionFixture.cpp.obj:
+	cd /d C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug && $(MAKE) -f test\CMakeFiles\runTests.dir\build.make test/CMakeFiles/runTests.dir/TransactionFixture.cpp.obj
+.PHONY : TransactionFixture.cpp.obj
+
+TransactionFixture.i: TransactionFixture.cpp.i
+
+.PHONY : TransactionFixture.i
+
+# target to preprocess a source file
+TransactionFixture.cpp.i:
+	cd /d C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug && $(MAKE) -f test\CMakeFiles\runTests.dir\build.make test/CMakeFiles/runTests.dir/TransactionFixture.cpp.i
+.PHONY : TransactionFixture.cpp.i
+
+TransactionFixture.s: TransactionFixture.cpp.s
+
+.PHONY : TransactionFixture.s
+
+# target to generate assembly for a file
+TransactionFixture.cpp.s:
+	cd /d C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug && $(MAKE) -f test\CMakeFiles\runTests.dir\build.make test/CMakeFiles/runTests.dir/TransactionFixture.cpp.s
+.PHONY : TransactionFixture.cpp.s
+
 runAllTest.obj: runAllTest.cpp.obj
 
 .PHONY : runAllTest.obj
@@ -270,6 +297,9 @@ help:
 	@echo ... AccountTest.obj
 	@echo ... AccountTest.i
 	@echo ... AccountTest.s
+	@echo ... TransactionFixture.obj
+	@echo ... TransactionFixture.i
+	@echo ... TransactionFixture.s
 	@echo ... runAllTest.obj
 	@echo ... runAllTest.i
 	@echo ... runAllTest.s

@@ -48,9 +48,9 @@ TEST_F(AccountSuite, createTransactionTest) {
     ASSERT_EQ(luigi->getMaxBankCredit(), MAXBankCreditLuigi);
     ASSERT_EQ(carlo->getMaxBankCredit(), MAXBankCreditCarlo);
 
-    //CREA UNA TRANSAZIONE DA MARIO A LUIGI MA NON LA FA
-    float marioLuigi = 521.32;
-    mario->createTransaction(luigi, "mario -> luigi", marioLuigi);
+    //CREA UNA TRANSAZIONE DA MARIO A LUIGI CON DATA DI SISTEMA E NON CONCILIATA
+    float marioLuigi1 = 521.32;
+    mario->createTransaction(luigi, "1_ mario -> luigi", marioLuigi1);
     countSizeMario++;
 
 
@@ -70,25 +70,86 @@ TEST_F(AccountSuite, createTransactionTest) {
     ASSERT_EQ(mario->getLastTransaction()->isConciliatory(), false);
     ASSERT_EQ(mario->getLastTransaction()->getRecipientIban(), luigi->getIban());
     ASSERT_EQ(mario->getLastTransaction()->getSenderIban(), mario->getIban());
-    ASSERT_EQ(mario->getLastTransaction()->getAmount(), marioLuigi);
+    ASSERT_EQ(mario->getLastTransaction()->getAmount(), marioLuigi1);
 
     //FA LA TRANSAZIONE TRA MARIO E LUIGI
     mario->setConciliatoryAndDoTransaction(luigi, mario->getLastTransaction());
+    countSizeLuigi++;
+    ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
+    ASSERT_EQ(countSizeLuigi, luigi->sizeHistoricalTransaction());
     ASSERT_EQ(mario->getLastTransaction()->isConciliatory(), true);
+    ASSERT_EQ(mario->getLastTransaction()->isConciliatory(), luigi->getLastTransaction()->isConciliatory());
+    ASSERT_EQ(mario->getLastTransaction()->getNumberOperation(), luigi->getLastTransaction()->getNumberOperation());
+    ASSERT_EQ(mario->getLastTransaction()->getRecipientIban(), luigi->getLastTransaction()->getRecipientIban());
+    ASSERT_EQ(mario->getLastTransaction()->getSenderIban(), luigi->getLastTransaction()->getSenderIban());
+    ASSERT_EQ(mario->getLastTransaction()->getAmount(), luigi->getLastTransaction()->getAmount());
+    ASSERT_EQ(mario->getLastTransaction()->getDate(), luigi->getLastTransaction()->getDate());
+    ASSERT_EQ(mario->getLastTransaction()->getTime(), luigi->getLastTransaction()->getTime());
+    ASSERT_EQ(mario->getLastTransaction()->getCausal(), luigi->getLastTransaction()->getCausal());
 
-    bankCreditMario = bankCreditMario - (marioLuigi-balanceMario);
+
+    bankCreditMario = bankCreditMario - (marioLuigi1-balanceMario);
     balanceMario = 0;
+    balanceLuigi += marioLuigi1;
     ASSERT_EQ(balanceMario, mario->getBalance());
     ASSERT_EQ(bankCreditMario, mario->getBankCredit());
-    ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
-
-
-    balanceLuigi += marioLuigi;
-    countSizeLuigi++;
     ASSERT_EQ(balanceLuigi, luigi->getBalance());
     ASSERT_EQ(bankCreditLuigi, luigi->getBankCredit());
-    ASSERT_EQ(countSizeLuigi, luigi->sizeHistoricalTransaction());
 
+
+
+    //TRANSAZIONE TRA LUIGI E CARLO CON DATA DI SISTEMA E CONCILIATA
+    float luigiCarlo1 = 921.35;
+    luigi->createTransaction(carlo, "1_ luigi -> carlo ", luigiCarlo1, true);
+    countSizeLuigi++;
+    countSizeCarlo++;
+
+
+    ASSERT_EQ(luigi->sizeHistoricalTransaction(), countSizeLuigi);
+    ASSERT_EQ(carlo->sizeHistoricalTransaction(), countSizeCarlo);
+    ASSERT_EQ(luigi->getLastTransaction()->getNumberOperation(), carlo->getLastTransaction()->getNumberOperation());
+    ASSERT_EQ(luigi->getIban(), luigi->getLastTransaction()->getSenderIban());
+    ASSERT_EQ(carlo->getIban(), luigi->getLastTransaction()->getRecipientIban());
+    ASSERT_EQ(luigi->getIban(), carlo->getLastTransaction()->getSenderIban());
+    ASSERT_EQ(carlo->getIban(), carlo->getLastTransaction()->getRecipientIban());
+    ASSERT_EQ(carlo->getLastTransaction()->getAmount(), luigiCarlo1);
+    ASSERT_EQ(luigi->getLastTransaction()->getAmount(), luigiCarlo1);
+    ASSERT_EQ(carlo->getLastTransaction()->getDate(), luigi->getLastTransaction()->getDate());
+    ASSERT_EQ(carlo->getLastTransaction()->getTime(), luigi->getLastTransaction()->getTime());
+    ASSERT_EQ(carlo->getLastTransaction()->isConciliatory(), true);
+    ASSERT_EQ(luigi->getLastTransaction()->isConciliatory(), true);
+
+    bankCreditLuigi = bankCreditLuigi - (luigiCarlo1 - balanceLuigi);
+    balanceLuigi = 0;
+    balanceCarlo += luigiCarlo1;
+    ASSERT_EQ(balanceLuigi, luigi->getBalance());
+    ASSERT_EQ(bankCreditLuigi, luigi->getBankCredit());
+    ASSERT_EQ(MAXBankCreditLuigi, luigi->getMaxBankCredit());
+    ASSERT_EQ(balanceCarlo, carlo->getBalance());
+    ASSERT_EQ(bankCreditCarlo, carlo->getBankCredit());
+    ASSERT_EQ(MAXBankCreditCarlo, carlo->getMaxBankCredit());
+
+    //TRANSAZIONE DA CARLO A MARIO CON UNA CON DATA A SCELTA MA NON CONCILIATA
+    float carloMario1 = 842.35;
+    string dateCarloMario1 = "03/10/2021";
+
+    carlo->createTransaction(mario, "1_ carlo -> mario", carloMario1, dateCarloMario1);
+    countSizeCarlo++;
+    ASSERT_EQ(countSizeCarlo, carlo->sizeHistoricalTransaction());
+    ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
+    ASSERT_EQ(balanceCarlo, carlo->getBalance());
+    ASSERT_EQ(balanceMario, mario->getBalance());
+
+    //PROVO A FARE LA TRANSAZIONE MA PASSANDO UNA TRANSAZIONE SBAGLIATA
+    Transaction* carloLast = carlo->getLastTransaction();
+    carloLast->setConciliatory();
+    carlo->setConciliatoryAndDoTransaction(mario,luigi->getLastTransaction());
+    ASSERT_EQ(countSizeCarlo, carlo->sizeHistoricalTransaction());
+    ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
+    ASSERT_EQ(countSizeLuigi, luigi->sizeHistoricalTransaction());
+    ASSERT_EQ(balanceCarlo, carlo->getBalance());
+    ASSERT_EQ(balanceMario, mario->getBalance());
+    ASSERT_EQ(balanceLuigi, luigi->getBalance());
 
 
 }

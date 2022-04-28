@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/AccountFixture.cpp" "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/cmake-build-debug/test/CMakeFiles/runTests.dir/AccountFixture.cpp.obj"
   "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/AccountTest.cpp" "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/cmake-build-debug/test/CMakeFiles/runTests.dir/AccountTest.cpp.obj"
+  "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/TransactionFixture.cpp" "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/cmake-build-debug/test/CMakeFiles/runTests.dir/TransactionFixture.cpp.obj"
   "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/runAllTest.cpp" "C:/Users/letiz/Desktop/laboratorioDiProgrammazione/cmake-build-debug/test/CMakeFiles/runTests.dir/runAllTest.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

@@ -7,6 +7,7 @@
 #include <utility>
 #include <ctime>
 #include <chrono>
+#include <iostream>
 
 
 using namespace std;
@@ -56,18 +57,20 @@ bool Transaction::isConciliatory() const {
 }
 
 bool Transaction::setCausal(const string &c) {
-    if (conciliatory){
+    if (!conciliatory){
         causal = c;
         return true;
     }
+    cerr<<"Non puoi modificare la causale di una transazione conciliata"<< endl;
     return false;
 }
 
 bool Transaction::setAmount(float a) {
-    if (conciliatory){
+    if (!conciliatory){
         amount = a;
         return true;
     }
+    cerr<<"Non puoi modificare l'importo di una transazione conciliata"<< endl;
     return false;
 }
 
@@ -83,8 +86,13 @@ const string &Transaction::getRecipientIban() const {
     return recipientIBAN;
 }
 
-void Transaction::setRecipientIban(const string &recipientIban) {
-    recipientIBAN = recipientIban;
+bool Transaction::setRecipientIban(const string &recipientIban) {
+    if (!conciliatory){
+        recipientIBAN = recipientIban;
+        return true;
+    }
+    cerr<<"Non puoi modificare il destinatario di una transazione conciliata"<< endl;
+    return false;
 }
 
 const string &Transaction::getDate() const {
@@ -92,10 +100,11 @@ const string &Transaction::getDate() const {
 }
 
 bool Transaction::setDate(const string &day, const string &month, const string &year) {
-    if (conciliatory){
+    if (!conciliatory){
         date = day + "/" + month + "/" + year;
         return true;
     }
+    cerr<<"Non puoi modificare la data di una transazione conciliata"<< endl;
     return false;
 }
 
@@ -104,9 +113,10 @@ const string &Transaction::getTime() const {
 }
 
 bool Transaction::setTime(const string &hours, const string &minutes) {
-    if (conciliatory) {
+    if (!conciliatory) {
         time = hours + ":" + minutes;
         return true;
     }
+    cerr<<"Non puoi modificare l'ora di una transazione conciliata"<< endl;
     return false;
 }

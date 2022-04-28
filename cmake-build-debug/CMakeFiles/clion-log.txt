@@ -1,5 +1,4 @@
 "C:\Program Files\JetBrains\CLion 2019.3.5\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\letiz\Desktop\laboratorioDiProgrammazione
--- Found PythonInterp: C:/Users/letiz/anaconda3/python.exe (found version "3.8.5") 
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/letiz/Desktop/laboratorioDiProgrammazione/cmake-build-debug

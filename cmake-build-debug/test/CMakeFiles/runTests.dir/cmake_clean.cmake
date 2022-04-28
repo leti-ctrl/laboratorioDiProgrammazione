@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/runTests.dir/AccountFixture.cpp.obj"
   "CMakeFiles/runTests.dir/AccountTest.cpp.obj"
+  "CMakeFiles/runTests.dir/TransactionFixture.cpp.obj"
   "CMakeFiles/runTests.dir/runAllTest.cpp.obj"
   "librunTests.dll.a"
   "runTests.exe"

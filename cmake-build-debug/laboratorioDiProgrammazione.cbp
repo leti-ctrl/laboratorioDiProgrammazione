@@ -421,6 +421,9 @@
 		<Unit filename="C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/AccountTest.cpp">
 			<Option target="runTests"/>
 		</Unit>
+		<Unit filename="C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/TransactionFixture.cpp">
+			<Option target="runTests"/>
+		</Unit>
 		<Unit filename="C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/lib/googletest/googlemock/src/gmock-all.cc">
 			<Option target="gmock"/>
 		</Unit>

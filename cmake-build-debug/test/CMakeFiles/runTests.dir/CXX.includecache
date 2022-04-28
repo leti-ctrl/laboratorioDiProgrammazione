@@ -286,21 +286,13 @@ cxxabi.h
 acxx_demangle.h
 -
 
-C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.h
-string
--
-list
--
-Transaction.h
-C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
-
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
 string
 -
 
-C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/AccountFixture.cpp
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/TransactionFixture.cpp
 gtest/gtest.h
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/gtest/gtest.h
-../Account.h
-C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.h
+../Transaction.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
 

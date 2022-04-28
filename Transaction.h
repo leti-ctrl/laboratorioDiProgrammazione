@@ -21,7 +21,7 @@ public:
     const string &getSenderIban() const;
 
     const string &getRecipientIban() const;
-    void setRecipientIban(const string &recipientIban);
+    bool setRecipientIban(const string &recipientIban);
 
     const string &getCausal() const;
     bool setCausal(const string &c);

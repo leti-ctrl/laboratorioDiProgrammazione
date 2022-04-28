@@ -77,7 +77,7 @@ preinstall: test/preinstall
 CMakeFiles/unit_testing.dir/all: CMakeFiles/core.dir/all
 	$(MAKE) -f CMakeFiles\unit_testing.dir\build.make CMakeFiles/unit_testing.dir/depend
 	$(MAKE) -f CMakeFiles\unit_testing.dir\build.make CMakeFiles/unit_testing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles --progress-num=16,17 "Built target unit_testing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles --progress-num=17,18 "Built target unit_testing"
 .PHONY : CMakeFiles/unit_testing.dir/all
 
 # Build rule for subdir invocation for target.
@@ -148,17 +148,17 @@ test/preinstall: test/lib/googletest/preinstall
 # Target rules for target test/CMakeFiles/runTests.dir
 
 # All Build rule for target.
+test/CMakeFiles/runTests.dir/all: CMakeFiles/core.dir/all
 test/CMakeFiles/runTests.dir/all: test/lib/googletest/googlemock/gtest/CMakeFiles/gtest_main.dir/all
 test/CMakeFiles/runTests.dir/all: test/lib/googletest/googlemock/gtest/CMakeFiles/gtest.dir/all
-test/CMakeFiles/runTests.dir/all: CMakeFiles/core.dir/all
 	$(MAKE) -f test\CMakeFiles\runTests.dir\build.make test/CMakeFiles/runTests.dir/depend
 	$(MAKE) -f test\CMakeFiles\runTests.dir\build.make test/CMakeFiles/runTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles --progress-num=12,13,14,15 "Built target runTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles --progress-num=12,13,14,15,16 "Built target runTests"
 .PHONY : test/CMakeFiles/runTests.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/runTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles 12
 	$(MAKE) -f CMakeFiles\Makefile2 test/CMakeFiles/runTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles 0
 .PHONY : test/CMakeFiles/runTests.dir/rule
@@ -217,8 +217,8 @@ test/lib/googletest/googlemock/preinstall: test/lib/googletest/googlemock/gtest/
 # Target rules for target test/lib/googletest/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
-test/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/all: test/lib/googletest/googlemock/gtest/CMakeFiles/gtest.dir/all
 test/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/all: test/lib/googletest/googlemock/CMakeFiles/gmock.dir/all
+test/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/all: test/lib/googletest/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f test\lib\googletest\googlemock\CMakeFiles\gmock_main.dir\build.make test/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f test\lib\googletest\googlemock\CMakeFiles\gmock_main.dir\build.make test/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\letiz\Desktop\laboratorioDiProgrammazione\cmake-build-debug\CMakeFiles --progress-num=6,7 "Built target gmock_main"
