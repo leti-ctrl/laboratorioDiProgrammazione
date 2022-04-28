@@ -141,8 +141,6 @@ TEST_F(AccountSuite, createTransactionTest) {
     ASSERT_EQ(balanceMario, mario->getBalance());
 
     //PROVO A FARE LA TRANSAZIONE MA PASSANDO UNA TRANSAZIONE SBAGLIATA
-    Transaction* carloLast = carlo->getLastTransaction();
-    carloLast->setConciliatory();
     carlo->setConciliatoryAndDoTransaction(mario,luigi->getLastTransaction());
     ASSERT_EQ(countSizeCarlo, carlo->sizeHistoricalTransaction());
     ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
@@ -151,5 +149,30 @@ TEST_F(AccountSuite, createTransactionTest) {
     ASSERT_EQ(balanceMario, mario->getBalance());
     ASSERT_EQ(balanceLuigi, luigi->getBalance());
 
+    //FACCIO LA TRANSAZIONE CORRETTA
+    carlo->setConciliatoryAndDoTransaction(mario, carlo->getLastTransaction());
+    countSizeMario++;
+    balanceCarlo -= carloMario1;
+    balanceMario += carloMario1-(MAXBankCreditMario-bankCreditMario);
+    bankCreditMario = MAXBankCreditMario;
+    ASSERT_EQ(balanceCarlo, carlo->getBalance());
+    ASSERT_EQ(bankCreditCarlo, carlo->getBankCredit());
+    ASSERT_EQ(countSizeCarlo, carlo->sizeHistoricalTransaction());
+    ASSERT_EQ(balanceMario, mario->getBalance());
+    ASSERT_EQ(bankCreditMario, mario->getBankCredit());
+    ASSERT_EQ(MAXBankCreditMario, mario->getMaxBankCredit());
+    ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
+
+
+    //TRANSAZIONE DA LUIGI A MARIO CHE NON VA A BUON FINE
+    float luigiMario1 = 2156.68;
+    luigi->createTransaction(mario, "luigi->mario", luigiMario1, "X", "X", true);
+    countSizeLuigi++;
+    ASSERT_EQ(countSizeLuigi, luigi->sizeHistoricalTransaction());
+    ASSERT_EQ(balanceLuigi, luigi->getBalance());
+    ASSERT_EQ(bankCreditLuigi, luigi->getBankCredit());
+    ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
+    ASSERT_EQ(balanceMario, mario->getBalance());
+    ASSERT_EQ(bankCreditMario, mario->getBankCredit());
 
 }
