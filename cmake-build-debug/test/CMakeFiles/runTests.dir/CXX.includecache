@@ -298,9 +298,25 @@ C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
 string
 -
 
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/AccountFixture.cpp
+gtest/gtest.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/gtest/gtest.h
+../Account.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.h
+
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/AccountTest.cpp
 gtest/gtest.h
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/gtest/gtest.h
 ../Account.h
 C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Account.h
+
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/TransactionFixture.cpp
+gtest/gtest.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/gtest/gtest.h
+../Transaction.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/Transaction.h
+
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/runAllTest.cpp
+gtest/gtest.h
+C:/Users/letiz/Desktop/laboratorioDiProgrammazione/test/gtest/gtest.h
 

@@ -99,10 +99,10 @@ list<Transaction> Account::getOneDayTransaction(const string &day, const string 
         if (t.getDate() == date)
             ret.push_back(t);
     }
-
+#ifdef _DEBUG
     if (ret.empty())
         cerr<<"Non sono state fatte transazioni in data " << date << endl;
-
+#endif
     return ret;
 }
 
@@ -115,10 +115,10 @@ list<Transaction> Account::getIbanTransaction(const string &iban) {
         if (t.getSenderIban() == iban)
             ret.push_back(t);
     }
-
+#ifdef _DEBUG
     if (ret.empty())
         cerr<<"Non esistono transazioni da/per questo codice IBAN: " << iban << endl;
-
+#endif
     return ret;
 }
 
@@ -129,10 +129,10 @@ list<Transaction> Account::getNotConciliatoryTransaction() {
         if (!t.isConciliatory())
             ret.push_back(t);
     }
-
+#ifdef _DEBUG
     if (ret.empty())
         cerr<<"Le transazioni sono tutte conciliate."<<endl;
-
+#endif
     return ret;
 }
 
@@ -143,8 +143,9 @@ bool Account::removeTransaction(const Transaction &rem) {
             return true;
         }
     }
-
+#ifdef _DEBUG
     cerr<<"la transazione numero " << rem.getNumberOperation() << " non è presente. " << endl;
+#endif
     return false;
 }
 
@@ -169,8 +170,10 @@ void Account::createTransaction(Account *recipient, string causal, float amount,
 
     if (conciliatory)
         doTransaction(recipient, *t);
+#ifdef _DEBUG
     else
         cout<<"Transazione n " << t->getNumberOperation() << " creata ma non conciliata " << endl;
+#endif
 }
 
 void Account::createTransaction(Account *recipient, string causal, float amount, bool conciliatory) {
@@ -180,8 +183,10 @@ void Account::createTransaction(Account *recipient, string causal, float amount,
 
     if (conciliatory)
         doTransaction(recipient, *t);
+#ifdef _DEBUG
     else
         cout<<"Transazione n " << t->getNumberOperation() << " creata ma non conciliata " << endl;
+#endif
 }
 
 void Account::setConciliatoryAndDoTransaction(Account* rec, Transaction* tr) {
@@ -191,8 +196,11 @@ void Account::setConciliatoryAndDoTransaction(Account* rec, Transaction* tr) {
             if (rec->getIban() == tr->getRecipientIban()) {
                 tr->setConciliatory();
                 doTransaction(rec, *tr);
-            } else
+            }
+#ifdef _DEBUG
+            else
                 cerr << "Il destinatario inserito e quello nella transazione non coincidono. " << endl;
+#endif
         }
     }
     //cerr << "La transazione cercata non è presente nello storico. " << endl;

@@ -61,7 +61,9 @@ bool Transaction::setCausal(const string &c) {
         causal = c;
         return true;
     }
+#ifdef _DEBUG
     cerr<<"Non puoi modificare la causale di una transazione conciliata"<< endl;
+#endif
     return false;
 }
 
@@ -70,7 +72,9 @@ bool Transaction::setAmount(float a) {
         amount = a;
         return true;
     }
+#ifdef _DEBUG
     cerr<<"Non puoi modificare l'importo di una transazione conciliata"<< endl;
+#endif
     return false;
 }
 
@@ -91,7 +95,9 @@ bool Transaction::setRecipientIban(const string &recipientIban) {
         recipientIBAN = recipientIban;
         return true;
     }
+#ifdef _DEBUG
     cerr<<"Non puoi modificare il destinatario di una transazione conciliata"<< endl;
+#endif
     return false;
 }
 
@@ -104,7 +110,9 @@ bool Transaction::setDate(const string &day, const string &month, const string &
         date = day + "/" + month + "/" + year;
         return true;
     }
+#ifdef _DEBUG
     cerr<<"Non puoi modificare la data di una transazione conciliata"<< endl;
+#endif
     return false;
 }
 
@@ -117,6 +125,8 @@ bool Transaction::setTime(const string &hours, const string &minutes) {
         time = hours + ":" + minutes;
         return true;
     }
+#ifdef _DEBUG
     cerr<<"Non puoi modificare l'ora di una transazione conciliata"<< endl;
+#endif
     return false;
 }
