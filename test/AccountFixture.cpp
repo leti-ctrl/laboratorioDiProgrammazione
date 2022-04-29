@@ -177,7 +177,7 @@ TEST (Account, TestGetNotConciliatoryTransaction) {
     list<Transaction> res = testing->getNotConciliatoryTransaction();
     ASSERT_EQ(res.size(), 4);
     for (const auto& it: res)
-        ASSERT_EQ(it.isConciliatory(), false);
+        ASSERT_FALSE(it.isConciliatory());
 
     auto it = res.begin();
     ASSERT_EQ(nc4.getNumberOperation(), it->getNumberOperation());
@@ -231,14 +231,11 @@ TEST (Account, TestRemoveTransaction) {
     }
     ASSERT_EQ(testing->sizeHistoricalTransaction(), tot);
 
-    bool res = testing->removeTransaction(*transactionTest[2]);
-    ASSERT_EQ(res, true);
+    ASSERT_TRUE(testing->removeTransaction(*transactionTest[2]));
 
-    res = testing->removeTransaction(*transactionTest[1]);
-    ASSERT_EQ(res, true);
+    ASSERT_TRUE(testing->removeTransaction(*transactionTest[1]));
 
-    res = testing->removeTransaction(*transactionTest[2]);
-    ASSERT_EQ(res, false);
+    ASSERT_FALSE(testing->removeTransaction(*transactionTest[2]));
 
 
     ASSERT_EQ(testing->sizeHistoricalTransaction(), tot-2);

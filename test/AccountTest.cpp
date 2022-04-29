@@ -67,7 +67,7 @@ TEST_F(AccountSuite, createTransactionTest) {
     ASSERT_EQ(mario->sizeHistoricalTransaction(), countSizeMario);
     ASSERT_EQ(luigi->sizeHistoricalTransaction(), countSizeLuigi);
     ASSERT_EQ(carlo->sizeHistoricalTransaction(), countSizeCarlo);
-    ASSERT_EQ(mario->getLastTransaction()->isConciliatory(), false);
+    ASSERT_FALSE(mario->getLastTransaction()->isConciliatory());
     ASSERT_EQ(mario->getLastTransaction()->getRecipientIban(), luigi->getIban());
     ASSERT_EQ(mario->getLastTransaction()->getSenderIban(), mario->getIban());
     ASSERT_EQ(mario->getLastTransaction()->getAmount(), marioLuigi1);
@@ -77,7 +77,7 @@ TEST_F(AccountSuite, createTransactionTest) {
     countSizeLuigi++;
     ASSERT_EQ(countSizeMario, mario->sizeHistoricalTransaction());
     ASSERT_EQ(countSizeLuigi, luigi->sizeHistoricalTransaction());
-    ASSERT_EQ(mario->getLastTransaction()->isConciliatory(), true);
+    ASSERT_TRUE(mario->getLastTransaction()->isConciliatory());
     ASSERT_EQ(mario->getLastTransaction()->isConciliatory(), luigi->getLastTransaction()->isConciliatory());
     ASSERT_EQ(mario->getLastTransaction()->getNumberOperation(), luigi->getLastTransaction()->getNumberOperation());
     ASSERT_EQ(mario->getLastTransaction()->getRecipientIban(), luigi->getLastTransaction()->getRecipientIban());
@@ -116,8 +116,8 @@ TEST_F(AccountSuite, createTransactionTest) {
     ASSERT_EQ(luigi->getLastTransaction()->getAmount(), luigiCarlo1);
     ASSERT_EQ(carlo->getLastTransaction()->getDate(), luigi->getLastTransaction()->getDate());
     ASSERT_EQ(carlo->getLastTransaction()->getTime(), luigi->getLastTransaction()->getTime());
-    ASSERT_EQ(carlo->getLastTransaction()->isConciliatory(), true);
-    ASSERT_EQ(luigi->getLastTransaction()->isConciliatory(), true);
+    ASSERT_TRUE(carlo->getLastTransaction()->isConciliatory());
+    ASSERT_TRUE(luigi->getLastTransaction()->isConciliatory());
 
     bankCreditLuigi = bankCreditLuigi - (luigiCarlo1 - balanceLuigi);
     balanceLuigi = 0;

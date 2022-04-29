@@ -16,7 +16,7 @@ TEST (Transaction, Constructor) {
     ASSERT_EQ(testFirst.getRecipientIban(), recipient);
     ASSERT_EQ(testFirst.getCausal(), causal);
     ASSERT_EQ(testFirst.getAmount(), amount);
-    ASSERT_EQ(testFirst.isConciliatory(), false);
+    ASSERT_FALSE(testFirst.isConciliatory());
 
     string date = "05/04/2021";
     Transaction testSecond = Transaction (sender, recipient, causal, amount, date);
@@ -25,7 +25,7 @@ TEST (Transaction, Constructor) {
     ASSERT_EQ(testSecond.getCausal(), causal);
     ASSERT_EQ(testSecond.getAmount(), amount);
     ASSERT_EQ(testSecond.getDate(), date);
-    ASSERT_EQ(testSecond.isConciliatory(), false);
+    ASSERT_FALSE(testSecond.isConciliatory());
 
     string time = "15:11";
     Transaction testThird = Transaction (sender, recipient, causal, amount, date, time);
@@ -35,7 +35,7 @@ TEST (Transaction, Constructor) {
     ASSERT_EQ(testThird.getAmount(), amount);
     ASSERT_EQ(testThird.getDate(), date);
     ASSERT_EQ(testThird.getTime(), time);
-    ASSERT_EQ(testThird.isConciliatory(), false);
+    ASSERT_FALSE(testThird.isConciliatory());
 
     bool conciliatory = true;
     Transaction testFourth = Transaction (sender, recipient, causal, amount, date, time, conciliatory);
@@ -45,7 +45,7 @@ TEST (Transaction, Constructor) {
     ASSERT_EQ(testFourth.getAmount(), amount);
     ASSERT_EQ(testFourth.getDate(), date);
     ASSERT_EQ(testFourth.getTime(), time);
-    ASSERT_EQ(testFourth.isConciliatory(), conciliatory);
+    ASSERT_TRUE(testFourth.isConciliatory());
 
 }
 
@@ -55,15 +55,13 @@ TEST (Transaction, TestSetAmount) {
 
     //SETAMOUNT CON CONCILIATORY == TRUE
     auto testing = new Transaction ("sender", "recipient", "causal", amount, "date", "time", true);
-    bool res = testing->setAmount(test);
+    ASSERT_FALSE(testing->setAmount(test));
     ASSERT_EQ(testing->getAmount(), amount);
-    ASSERT_EQ(res, false);
 
     //SETAMOUNT CON CONCILIATORY == FALSE;
     auto secondTesting = new Transaction ("sender", "recipient", "causal", amount, "date", "time");
-    bool secondRes = secondTesting->setAmount(test);
+    ASSERT_TRUE(secondTesting->setAmount(test));
     ASSERT_EQ(secondTesting->getAmount(), test);
-    ASSERT_EQ(secondRes, true);
 
     delete testing;
     delete secondTesting;
@@ -75,15 +73,13 @@ TEST (Transaction, TestSetCausal) {
 
     //SETCAUSAL CON CONCILIATORY == TRUE
     auto testing = new Transaction ("sender", "recipient", causal , 123.4 , "date", "time", true);
-    bool res = testing->setCausal(test);
+    ASSERT_FALSE(testing->setCausal(test));
     ASSERT_EQ(testing->getCausal(), causal);
-    ASSERT_EQ(res, false);
 
     //SETCAUSAL CON CONCILIATORY == FALSE;
     auto secondTesting = new Transaction ("sender", "recipient", causal , 123.4 , "date", "time");
-    bool secondRes = secondTesting->setCausal(test);
+    ASSERT_TRUE(secondTesting->setCausal(test));
     ASSERT_EQ(secondTesting->getCausal(), test);
-    ASSERT_EQ(secondRes, true);
 
     delete testing;
     delete secondTesting;
@@ -96,15 +92,13 @@ TEST (Transaction, TestSetRecipientIban) {
 
     //SETRECIPIENT CON CONCILIATORY == TRUE
     auto testing = new Transaction ("sender", recipient, "causal" , 123.4 , "date", "time", true);
-    bool res = testing->setRecipientIban(test);
+    ASSERT_FALSE(testing->setRecipientIban(test));
     ASSERT_EQ(testing->getRecipientIban(), recipient);
-    ASSERT_EQ(res, false);
 
     //SETRECIPIENT CON CONCILIATORY == FALSE;
     auto secondTesting = new Transaction ("sender", recipient, "causal" , 123.4 , "date", "time");
-    bool secondRes = secondTesting->setRecipientIban(test);
+    ASSERT_TRUE(secondTesting->setRecipientIban(test));
     ASSERT_EQ(secondTesting->getRecipientIban(), test);
-    ASSERT_EQ(secondRes, true);
 
     delete testing;
     delete secondTesting;
@@ -120,15 +114,13 @@ TEST (Transaction, TestSetDate) {
 
     //SETDATE CON CONCILIATORY == TRUE
     auto testing = new Transaction ("sender", "recipient ", "causal", 123.4 , date , "time", true);
-    bool res =testing->setDate(testDay, testMonth, testYear);
+    ASSERT_FALSE(testing->setDate(testDay, testMonth, testYear));
     ASSERT_EQ(testing->getDate(), date);
-    ASSERT_EQ(res, false);
 
     //SETDATE CON CONCILIATORY == FALSE;
     auto secondTesting = new Transaction ("sender", "recpient", "causal" , 123.4 , date, "time");
-    bool secondRes = secondTesting->setDate(testDay, testMonth, testYear);
+    ASSERT_TRUE(secondTesting->setDate(testDay, testMonth, testYear));
     ASSERT_EQ(secondTesting->getDate(), test);
-    ASSERT_EQ(secondRes, true);
 
     delete testing;
     delete secondTesting;
@@ -144,15 +136,13 @@ TEST (Transaction, TestSetTime) {
 
     //SETTIME CON CONCILIATORY == TRUE
     auto testing = new Transaction ("sender", "recipient ", "causal", 123.4 , "date" , time, true);
-    bool res = testing->setTime(testHour, testMinute);
+    ASSERT_FALSE(testing->setTime(testHour, testMinute));
     ASSERT_EQ(testing->getTime(), time);
-    ASSERT_EQ(res, false);
 
     //SETTIME CON CONCILIATORY == FALSE;
     auto secondTesting = new Transaction ("sender", "recpient", "causal" , 123.4 , "date", time);
-    bool secondRes = secondTesting->setTime(testHour, testMinute);
+    ASSERT_TRUE(secondTesting->setTime(testHour, testMinute));
     ASSERT_EQ(secondTesting->getTime(), test);
-    ASSERT_EQ(secondRes, true);
 
     delete testing;
     delete secondTesting;
